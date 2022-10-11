@@ -25,6 +25,9 @@
 \def\addressreturn#1{\def\@addressreturn{#1}}
 \def\place#1{\def\@place{#1}}
 \def\date#1{\def\@date{#1}}
+\def\subject#1{\def\@subject{#1}}
+
+\subject{Re: Test Subject}
 
 \addressfrom{
 Erika Mustermann\\
@@ -88,7 +91,7 @@ Datum: \today%
 				top=2cm,
 				bottom=2.2cm,
 				footskip=1cm,
-                showframe,
+%                showframe,
 				]{geometry}
 \RequirePackage
 %[grid,gridunit=mm,gridcolor=black!30,subgridcolor=gray!10]
@@ -136,7 +139,7 @@ Datum: \today%
 }
 
 \renewcommand{\maketitle}{
-    \newgeometry{left=2.5cm,right=2cm,top=10cm,bottom=2.2cm,footskip=1cm,} 
+ 
     \begin{tikzpicture}[remember picture, overlay]
 
 	%---FROM
@@ -216,15 +219,28 @@ Datum: \today%
 	\node[anchor=north west,outer ysep = 50mm,outer xsep = -85mm, inner xsep = 0mm,align = left] at (current page.north east) {\formalletterdetails{}};
 	}
 	\fi
+
+    \node[%draw,
+        anchor = north west,
+        inner xsep = 0mm,
+        inner ysep = 0mm,
+        align = left,
+        minimum width = \textwidth,
+        text width = \textwidth,
+        ] at ([yshift = -10.5cm, xshift = 2.5cm]current page.north west)
+        {\textbf{\@subject}}
+        {};
     \end{tikzpicture}%
-    \restoregeometry
 }
 
 
 \setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0mm}
 \pagestyle{fancy}
 \fancyfoot{}
 \fancyfoot[R]{\ifnum\value{pagenumtype}=0{}\else{Seite \thepage \hspace{1pt} von \pageref{LastPage}}\fi}
 
 \fancypagestyle{letcust}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[R]{\ifnum\value{pagenumtype}=0{}\else{Seite \thepage \hspace{1pt} von \pageref{LastPage}}\fi}\fancyfoot[L]{\ifnum\value{footertype}=0{}\else{\setfooter}\fi}}
+
+\vspace*{8.5cm}
