@@ -8,4 +8,4 @@ Class options:
 
 Example document:
 
-![](./test.pdf)
+![](./din-letter-example.png)
